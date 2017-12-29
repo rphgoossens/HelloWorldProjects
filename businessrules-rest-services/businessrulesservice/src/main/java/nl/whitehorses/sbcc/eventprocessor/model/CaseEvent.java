@@ -1,20 +1,14 @@
-package nl.whitehorses.sbcc.eventprocessor.domain;
+package nl.whitehorses.sbcc.eventprocessor.model;
 
-public class CaseAction {
+import org.hibernate.validator.constraints.NotEmpty;
+
+public class CaseEvent {
 
     private String type;
     private String name;
     private String value;
 
-    public CaseAction() {
-    }
-
-    public CaseAction(String type, String name, String value) {
-        this.type = type;
-        this.name = name;
-        this.value = value;
-    }
-
+    @NotEmpty
     public String getType() {
         return type;
     }
@@ -38,4 +32,14 @@ public class CaseAction {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "CaseEvent{" +
+                "type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
+
 }

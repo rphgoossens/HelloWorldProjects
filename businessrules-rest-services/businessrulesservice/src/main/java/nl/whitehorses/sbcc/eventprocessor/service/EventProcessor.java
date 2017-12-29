@@ -1,14 +1,11 @@
-package nl.whitehorses.sbcc.eventprocessor.api;
+package nl.whitehorses.sbcc.eventprocessor.service;
 
-import com.googlecode.jsonrpc4j.JsonRpcError;
-import com.googlecode.jsonrpc4j.JsonRpcErrors;
 import com.googlecode.jsonrpc4j.JsonRpcMethod;
 import com.googlecode.jsonrpc4j.JsonRpcParam;
-import nl.whitehorses.sbcc.eventprocessor.domain.CaseAction;
-import nl.whitehorses.sbcc.eventprocessor.domain.CaseEvent;
+import nl.whitehorses.sbcc.eventprocessor.model.CaseAction;
+import nl.whitehorses.sbcc.eventprocessor.model.CaseEvent;
 import org.springframework.stereotype.Service;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
 @Service

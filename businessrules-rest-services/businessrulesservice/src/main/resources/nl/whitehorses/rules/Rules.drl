@@ -1,0 +1,24 @@
+package nl.whitehorses.rules;
+
+import nl.whitehorses.sbcc.eventprocessor.model.CaseEvent;
+import nl.whitehorses.sbcc.eventprocessor.model.CaseAction;
+
+global nl.whitehorses.sbcc.eventprocessor.model.CaseAction caseAction;
+dialect "mvel"
+
+rule "Activity Action"
+	when
+		caseEvent:CaseEvent(type=="ACTIVITY_EVENT")
+	then
+		caseAction.setType("ACTIVITY_ACTION");
+		caseAction.setName(caseEvent.getName());
+		caseAction.setValue(caseEvent.getValue());
+	end
+rule "Milestone Action"
+	when
+		caseEvent:CaseEvent(type=="MILESTONE_EVENT")
+	then
+        caseAction.setType("MILESTONE_ACTION");
+        caseAction.setName(caseEvent.getName());
+        caseAction.setValue(caseEvent.getValue());
+	end

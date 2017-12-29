@@ -2,13 +2,15 @@ package nl.whitehorses.sbcc.eventprocessor.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.validation.constraints.NotNull;
+
 public class CaseEvent {
 
     private String type;
     private String name;
     private String value;
 
-    @NotEmpty
+    @NotNull
     public String getType() {
         return type;
     }
@@ -17,6 +19,7 @@ public class CaseEvent {
         this.type = type;
     }
 
+    @NotNull
     public String getName() {
         return name;
     }
@@ -25,6 +28,7 @@ public class CaseEvent {
         this.name = name;
     }
 
+    @NotNull
     public String getValue() {
         return value;
     }

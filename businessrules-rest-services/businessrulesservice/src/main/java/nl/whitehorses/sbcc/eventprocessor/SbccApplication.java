@@ -35,6 +35,7 @@ public class SbccApplication {
         JsonServiceExporter exporter = new JsonServiceExporter();
         exporter.setService(eventProcessor());
         exporter.setServiceInterface(EventProcessor.class);
+
         return exporter;
     }
 
@@ -42,7 +43,6 @@ public class SbccApplication {
     @Bean
     public KieContainer kieContainer() {
         KieServices kieServices = KieServices.Factory.get();
-
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
         kieFileSystem.write(ResourceFactory.newClassPathResource(drlFile));
         KieBuilder kieBuilder = kieServices.newKieBuilder(kieFileSystem);
@@ -50,6 +50,5 @@ public class SbccApplication {
         KieModule kieModule = kieBuilder.getKieModule();
 
         return kieServices.newKieContainer(kieModule.getReleaseId());
-
     }
 }

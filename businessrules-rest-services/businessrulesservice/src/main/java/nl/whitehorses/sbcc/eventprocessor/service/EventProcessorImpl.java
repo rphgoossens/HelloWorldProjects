@@ -19,10 +19,7 @@ public class EventProcessorImpl implements EventProcessor {
     public CaseAction processEvent(CaseEvent caseEvent) {
 
         logger.debug("CaseEvent: " + caseEvent.toString());
-        logger.debug("CaseEvent.type: " + caseEvent.getType());
 
-        //TODO: call rules service
         return droolsService.processEvent(caseEvent);
-        //return new CaseAction("MILESTONE_ACTION", "msProcesinleidingIngediend", "REACH");
     }
 }

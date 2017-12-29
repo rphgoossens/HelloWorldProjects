@@ -38,4 +38,13 @@ public class CaseAction {
     public void setValue(String value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "CaseAction{" +
+                "type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

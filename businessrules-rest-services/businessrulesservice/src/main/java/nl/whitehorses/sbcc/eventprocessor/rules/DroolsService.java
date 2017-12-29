@@ -14,13 +14,10 @@ public class DroolsService {
 
     private static final Logger logger = LoggerFactory.getLogger(DroolsService.class);
 
-
     @Autowired
     private KieContainer kContainer;
 
     public CaseAction processEvent(CaseEvent caseEvent) {
-//        return new CaseAction("MILESTONE_ACTION", "msProcesinleidingIngediend", "REACH");
-
 
         CaseAction caseAction = new CaseAction();
 
@@ -32,9 +29,6 @@ public class DroolsService {
 
         logger.debug("CaseAction: " + caseAction.toString());
 
-
         return caseAction;
     }
-
-
 }

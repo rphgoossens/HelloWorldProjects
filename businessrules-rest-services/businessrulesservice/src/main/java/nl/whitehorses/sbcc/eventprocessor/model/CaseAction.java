@@ -2,49 +2,43 @@ package nl.whitehorses.sbcc.eventprocessor.model;
 
 public class CaseAction {
 
-    private String type;
-    private String name;
-    private String value;
+    private ActivityAction activityAction;
+    private MilestoneAction milestoneAction;
+
+    //TODO:date
+    //private ActionDate actionDate;
 
     public CaseAction() {
     }
 
-    public CaseAction(String type, String name, String value) {
-        this.type = type;
-        this.name = name;
-        this.value = value;
+    public CaseAction(ActivityAction activityAction, MilestoneAction milestoneAction) {
+        this.activityAction = activityAction;
+        this.milestoneAction = milestoneAction;
     }
 
-    public String getType() {
-        return type;
+    public ActivityAction getActivityAction() {
+        return activityAction;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setActivityAction(ActivityAction activityAction) {
+        this.activityAction = activityAction;
     }
 
-    public String getName() {
-        return name;
+
+    public MilestoneAction getMilestoneAction() {
+        return milestoneAction;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
+    public void setMilestoneAction(MilestoneAction milestoneAction) {
+        this.milestoneAction = milestoneAction;
     }
 
     @Override
     public String toString() {
         return "CaseAction{" +
-                "type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", value='" + value + '\'' +
+                "activityAction=" + activityAction +
+                ", milestoneAction=" + milestoneAction +
                 '}';
     }
+
 }

@@ -1,48 +1,75 @@
 package nl.whitehorses.sbcc.eventprocessor.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.validation.constraints.NotNull;
 
 public class CaseEvent {
 
-    private String type;
-    private String name;
-    private String value;
+    private String eventType;
+    private ActivityEvent activityEvent;
+    private CustomEvent customEvent;
+    private LifecycleEvent lifecycleEvent;
+    private MilestoneEvent milestoneEvent;
 
-    @NotNull
-    public String getType() {
-        return type;
+    public CaseEvent() {
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @NotNull
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public CaseEvent(String eventType, ActivityEvent activityEvent, CustomEvent customEvent, LifecycleEvent lifecycleEvent, MilestoneEvent milestoneEvent) {
+        this.eventType = eventType;
+        this.activityEvent = activityEvent;
+        this.customEvent = customEvent;
+        this.lifecycleEvent = lifecycleEvent;
+        this.milestoneEvent = milestoneEvent;
     }
 
     @NotNull
-    public String getValue() {
-        return value;
+    public String getEventType() {
+        return eventType;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public ActivityEvent getActivityEvent() {
+        return activityEvent;
+    }
+
+    public void setActivityEvent(ActivityEvent activityEvent) {
+        this.activityEvent = activityEvent;
+    }
+
+    public CustomEvent getCustomEvent() {
+        return customEvent;
+    }
+
+    public void setCustomEvent(CustomEvent customEvent) {
+        this.customEvent = customEvent;
+    }
+
+    public LifecycleEvent getLifecycleEvent() {
+        return lifecycleEvent;
+    }
+
+    public void setLifecycleEvent(LifecycleEvent lifecycleEvent) {
+        this.lifecycleEvent = lifecycleEvent;
+    }
+
+    public MilestoneEvent getMilestoneEvent() {
+        return milestoneEvent;
+    }
+
+    public void setMilestoneEvent(MilestoneEvent milestoneEvent) {
+        this.milestoneEvent = milestoneEvent;
     }
 
     @Override
     public String toString() {
         return "CaseEvent{" +
-                "type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                ", value='" + value + '\'' +
+                "eventType='" + eventType + '\'' +
+                ", activityEvent=" + activityEvent +
+                ", customEvent=" + customEvent +
+                ", lifecycleEvent=" + lifecycleEvent +
+                ", milestoneEvent=" + milestoneEvent +
                 '}';
     }
 

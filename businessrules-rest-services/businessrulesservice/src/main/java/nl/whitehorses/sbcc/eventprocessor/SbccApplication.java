@@ -30,7 +30,9 @@ public class SbccApplication {
         return new EventProcessorImpl();
     }
 
-    @Bean(name = "/rpc/business-rules-service")
+    // Autoconfiguration with JsonRpcService unfortunately clashes with Bean Validation
+    // So sticking with configuration as Bean
+    @Bean(name = "/rpc/business-rules-service/1.0")
     public JsonServiceExporter jsonServiceExporter() {
         JsonServiceExporter exporter = new JsonServiceExporter();
         exporter.setService(eventProcessor());
@@ -38,7 +40,6 @@ public class SbccApplication {
 
         return exporter;
     }
-
 
     @Bean
     public KieContainer kieContainer() {
@@ -51,4 +52,5 @@ public class SbccApplication {
 
         return kieServices.newKieContainer(kieModule.getReleaseId());
     }
+
 }

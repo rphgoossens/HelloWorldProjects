@@ -2,23 +2,28 @@ package nl.whitehorses.rules;
 
 import nl.whitehorses.sbcc.eventprocessor.model.CaseEvent;
 import nl.whitehorses.sbcc.eventprocessor.model.CaseAction;
+import nl.whitehorses.sbcc.eventprocessor.model.MilestoneAction;
+import nl.whitehorses.sbcc.eventprocessor.model.ActivityAction;
 
 global nl.whitehorses.sbcc.eventprocessor.model.CaseAction caseAction;
 dialect "mvel"
 
 rule "Activity Action"
 	when
-		caseEvent:CaseEvent(type=="ACTIVITY_EVENT")
+		caseEvent:CaseEvent(eventType=="ACTIVITY_EVENT")
 	then
-		caseAction.setType("ACTIVITY_ACTION");
-		caseAction.setName(caseEvent.getName());
-		caseAction.setValue(caseEvent.getValue());
+	    ActivityAction activityAction = new ActivityAction();
+        activityAction.setActivityName(caseEvent.getActivityEvent().getActivityName());
+        activityAction.setAction(caseEvent.getActivityEvent().getActivityEvent());
+		caseAction.setActivityAction(activityAction);
 	end
+
 rule "Milestone Action"
 	when
-		caseEvent:CaseEvent(type=="MILESTONE_EVENT")
+		caseEvent:CaseEvent(eventType=="MILESTONE_EVENT")
 	then
-        caseAction.setType("MILESTONE_ACTION");
-        caseAction.setName(caseEvent.getName());
-        caseAction.setValue(caseEvent.getValue());
+        MilestoneAction milestoneAction = new MilestoneAction();
+        milestoneAction.setMilestoneName(caseEvent.getMilestoneEvent().getMilestone());
+        milestoneAction.setAction(caseEvent.getMilestoneEvent().getMilestoneEvent());
+        caseAction.setMilestoneAction(milestoneAction);
 	end

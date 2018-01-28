@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,8 +37,9 @@ public class HelloBeerService implements HelloBeerApiDelegate {
     public ResponseEntity<List<Beer>> getAllBeersUsingGET(String type) {
         logger.info("GET");
 
-        List<Beer> beerDTOs = new ArrayList<>();
-        List<nl.whitehorses.hellobeer.model.Beer> beerEOs = new ArrayList<>();
+        List<Beer> beerDTOs;
+        List<nl.whitehorses.hellobeer.model.Beer> beerEOs;
+
         if (type == null) {
             beerEOs = helloBeerRepository.findAll();
         } else {

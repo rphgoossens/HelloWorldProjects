@@ -2,7 +2,7 @@ package nl.whitehorses.hellobeer;
 
 import nl.whitehorses.hellobeer.model.Beer;
 import nl.whitehorses.hellobeer.model.BeerType;
-import nl.whitehorses.hellobeer.service.BeerTypeTransformer;
+import nl.whitehorses.hellobeer.service.BeerConverter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,31 +16,31 @@ import static org.junit.Assert.assertEquals;
 public class BeerTest {
 
     @Autowired
-    BeerTypeTransformer beerTypeTransformer;
+    BeerConverter beerConverter;
 
     @Test
-    public void testValueOf() {
+    public void fromEoToDto() {
         Beer beerEO = new Beer();
         beerEO.setId(1L);
         beerEO.setBrewery("Brand");
         beerEO.setName("Brand Saison");
         beerEO.setType(BeerType.OTHER);
 
-        nl.whitehorses.hellobeer.generated.model.Beer beerDTO = beerTypeTransformer.fromEoToDto(beerEO);
+        nl.whitehorses.hellobeer.generated.model.Beer beerDTO = beerConverter.fromEoToDto(beerEO);
 
         assertEquals("OTHER", beerDTO.getType().toString());
 
     }
 
     @Test
-    public void testConstructor() {
+    public void fromDtoToEo() {
         nl.whitehorses.hellobeer.generated.model.Beer beerDTO = new nl.whitehorses.hellobeer.generated.model.Beer();
         beerDTO.setId(1L);
         beerDTO.setBrewery("Brand");
         beerDTO.setName("Brand Saison");
         beerDTO.setType(nl.whitehorses.hellobeer.generated.model.Beer.TypeEnum.OTHER);
 
-        Beer beerEO = beerTypeTransformer.fromDTOtoEO(beerDTO);
+        Beer beerEO = beerConverter.fromDTOtoEO(beerDTO);
 
         assertEquals("OTHER", beerEO.getType().toString());
     }

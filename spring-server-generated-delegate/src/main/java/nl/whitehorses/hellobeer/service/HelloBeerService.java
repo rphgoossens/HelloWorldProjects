@@ -21,7 +21,7 @@ public class HelloBeerService implements HelloBeerApiDelegate {
     private static final Logger logger = LoggerFactory.getLogger(HelloBeerService.class);
 
     @Autowired
-    private BeerTypeTransformer beerTypeTransformer;
+    private BeerConverter beerConverter;
 
     @Autowired
     private HelloBeerRepository helloBeerRepository;
@@ -30,13 +30,13 @@ public class HelloBeerService implements HelloBeerApiDelegate {
     public ResponseEntity<Beer> addToBeerRepositoryUsingPOST(Beer beer) {
         logger.info("POST");
 
-        nl.whitehorses.hellobeer.model.Beer beerEO = helloBeerRepository.save(beerTypeTransformer.fromDTOtoEO(beer));
-        return ResponseEntity.ok(beerTypeTransformer.fromEoToDto(beerEO));
+        nl.whitehorses.hellobeer.model.Beer beerEO = helloBeerRepository.save(beerConverter.fromDTOtoEO(beer));
+        return ResponseEntity.ok(beerConverter.fromEoToDto(beerEO));
     }
 
     @Override
     public ResponseEntity<List<Beer>> getAllBeersUsingGET(String type) {
-        logger.info("POST");
+        logger.info("GET");
 
         List<Beer> beerDTOs = new ArrayList<>();
         List<nl.whitehorses.hellobeer.model.Beer> beerEOs = new ArrayList<>();
@@ -46,7 +46,7 @@ public class HelloBeerService implements HelloBeerApiDelegate {
             beerEOs = helloBeerRepository.findByType(BeerType.valueOf(type));
         }
 
-        beerDTOs = beerEOs.stream().map(beerTypeTransformer::fromEoToDto).collect(Collectors.toList());
+        beerDTOs = beerEOs.stream().map(beerConverter::fromEoToDto).collect(Collectors.toList());
 
         return ResponseEntity.ok(beerDTOs);
     }

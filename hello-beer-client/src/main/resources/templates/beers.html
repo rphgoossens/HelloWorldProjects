@@ -1,0 +1,81 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Hello Beers</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="app.css"/>
+</head>
+
+<body>
+<div class="generic-container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="lead">Hello Beer Inventory</span>
+        </div>
+        <div th:unless="${#lists.isEmpty(beers)}">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Brewery</th>
+                    <th width="100"/>
+                    <th width="100"/>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="beer : ${beers}">
+                    <td><span th:text="${beer.name}"></span></td>
+                    <td><span th:text="#{${beer.type}}"></span></td>
+                    <td><span th:text="${beer.brewery}"></span></td>
+                    <td>
+                        <a href="" class="btn btn-success custom-width">edit</a>
+                    </td>
+                    <td>
+                        <a href="" class="btn btn-danger custom-width">delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <hr/>
+
+    <div class="well lead">Add a beer</div>
+    <form method="POST" class="form-horizontal">
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="input.name">Name</label>
+                <div class="col-md-7">
+                    <input type="text" id="input.name" name="name" class="form-control input-sm"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="input.type">Beer type</label>
+                <div class="col-md-7">
+                    <select id="input.type" name="type" class="form-control input-sm">
+                        <option th:each="type : ${beerTypes}"
+                                th:value="${type}"
+                                th:text="#{${type}}"></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label class="col-md-3 control-lable" for="input.brewery">Brewery</label>
+                <div class="col-md-7">
+                    <input type="text" id="input.brewery" name="brewery" class="form-control input-sm"/>
+                </div>
+            </div>
+        </div>
+        <input type="submit" value="OK" class="btn btn-primary custom-width float-right"/>
+    </form>
+</div>
+</body>
+</html>

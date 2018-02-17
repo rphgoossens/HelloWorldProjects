@@ -15,6 +15,7 @@ public class HelloBeerClient extends WebMvcConfigurerAdapter {
         org.springframework.boot.SpringApplication.run(HelloBeerClient.class, args);
     }
 
+    @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addRedirectViewController("/", "/beers");
     }

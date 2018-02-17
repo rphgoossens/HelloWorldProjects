@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +22,7 @@ public class BeersController {
         this.beerService = beerService;
     }
 
-    @RequestMapping(method = {org.springframework.web.bind.annotation.RequestMethod.GET})
+    @RequestMapping(method = {RequestMethod.GET})
     public String getBeers(Model model) {
         List<Beer> beers = beerService.getAllBeers();
 
@@ -31,7 +32,7 @@ public class BeersController {
         return "beers";
     }
 
-    @RequestMapping(method = {org.springframework.web.bind.annotation.RequestMethod.POST})
+    @RequestMapping(method = {RequestMethod.POST})
     public String addToBeers(Beer beer) {
         beerService.save(beer);
 

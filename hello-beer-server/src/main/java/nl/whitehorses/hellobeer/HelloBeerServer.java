@@ -12,12 +12,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackages = {"nl.whitehorses.hellobeer", "nl.whitehorses.hellobeer.generated.api"})
 public class HelloBeerServer implements CommandLineRunner {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         new SpringApplication(HelloBeerServer.class).run(args);
     }
 
     @Override
-    public void run(String... arg0) throws Exception {
+    public void run(String... arg0) {
         if (arg0.length > 0 && arg0[0].equals("exitcode")) {
             throw new ExitException();
         }

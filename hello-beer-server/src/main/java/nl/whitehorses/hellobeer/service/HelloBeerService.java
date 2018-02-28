@@ -4,6 +4,7 @@ import nl.whitehorses.hellobeer.generated.api.HelloBeerApiDelegate;
 import nl.whitehorses.hellobeer.generated.model.Beer;
 import nl.whitehorses.hellobeer.model.BeerType;
 import nl.whitehorses.hellobeer.repository.HelloBeerRepository;
+import nl.whitehorses.hellobeer.util.BeerConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

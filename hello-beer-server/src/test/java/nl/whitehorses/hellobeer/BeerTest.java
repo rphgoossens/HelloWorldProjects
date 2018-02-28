@@ -2,7 +2,7 @@ package nl.whitehorses.hellobeer;
 
 import nl.whitehorses.hellobeer.model.Beer;
 import nl.whitehorses.hellobeer.model.BeerType;
-import nl.whitehorses.hellobeer.service.BeerConverter;
+import nl.whitehorses.hellobeer.util.BeerConverter;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

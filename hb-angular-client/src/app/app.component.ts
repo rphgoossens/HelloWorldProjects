@@ -14,6 +14,10 @@ export class AppComponent implements OnInit {
   constructor(private apiClientService: ApiClientService) {
   }
 
+  public onBeerPosted(beer: Beer): void {
+    this.beers.push(beer);
+  }
+
   ngOnInit() {
     this.apiClientService.getAllBeersUsingGET(null)
       .subscribe(resp => {

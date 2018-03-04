@@ -1,0 +1,35 @@
+<div>
+  <div class="well lead">Add a beer</div>
+  <form method="POST" class="form-horizontal">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3 control-lable" for="input.name">Name</label>
+        <div class="col-md-7">
+          <input [(ngModel)]="beer.name" type="text" id="input.name" name="name" class="form-control input-sm"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3 control-lable" for="input.type">Beer type</label>
+        <div class="col-md-7">
+          <select [(ngModel)]="beer.type" id="input.type" name="type" class="form-control input-sm">
+            <option *ngFor="let beerType of beerTypes" [value]="beerType">{{beerType}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3 control-lable" for="input.brewery">Brewery</label>
+        <div class="col-md-7">
+          <input [(ngModel)]="beer.brewery" type="text" id="input.brewery" name="brewery"
+                 class="form-control input-sm"/>
+        </div>
+      </div>
+    </div>
+    <div>
+      <input (click)="postBeer()" value="OK" title="OK" class="btn btn-primary custom-width float-right"/>
+    </div>
+  </form>
+</div>

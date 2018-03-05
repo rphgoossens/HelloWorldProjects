@@ -17,7 +17,7 @@
         <tbody>
         <tr *ngFor="let beer of beers">
           <td><span>{{beer.name}}</span></td>
-          <td><span>{{beer.type}}</span></td>
+          <td><span>{{beer.type | translate}}</span></td>
           <td><span>{{beer.brewery}}</span></td>
           <td>
             <a href="" class="btn btn-success custom-width">edit</a>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {ApiClientService} from './services/beer/index';
 import {Beer} from './services/beer/models';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,8 @@ import {Beer} from './services/beer/models';
 export class AppComponent implements OnInit {
   public beers: Beer[];
 
-  constructor(private apiClientService: ApiClientService) {
+  constructor(private apiClientService: ApiClientService, private translateService: TranslateService) {
+    translateService.setDefaultLang('en');
   }
 
   public onBeerPosted(beer: Beer): void {

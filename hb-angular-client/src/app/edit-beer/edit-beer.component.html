@@ -17,7 +17,7 @@
         <label class="col-md-3 control-lable" for="input.type">Beer type</label>
         <div class="col-md-7">
           <select [(ngModel)]="beer.type" id="input.type" name="type" class="form-control input-sm">
-            <option *ngFor="let beerType of beerTypes" [value]="beerType">{{beerType}}</option>
+            <option *ngFor="let beerType of beerTypes" [value]="beerType">{{beerType | translate}}</option>
           </select>
         </div>
       </div>

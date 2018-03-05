@@ -1,0 +1,8 @@
+{
+  "LAGER": "Lager",
+  "PILSNER": "Pilsner",
+  "PALE_ALE": "Pale Ale",
+  "INDIA_PALE_ALE": "India Pale Ale",
+  "STOUT": "Stout",
+  "OTHER": "Other"
+}

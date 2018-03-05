@@ -1,5 +1,8 @@
 <div>
   <div class="well lead">Add a beer</div>
+  <div [hidden]="!error" class="panel panel-danger panel-body">
+    <span class="text-danger">{{error}}</span>
+  </div>
   <form method="POST" class="form-horizontal">
     <div class="row">
       <div class="form-group col-md-12">

@@ -15,6 +15,8 @@ export class EditBeerComponent implements OnInit {
   public beer: Beer = {} as Beer;
   public beerTypes: string[];
 
+  public error: string;
+
   constructor(private apiClientService: ApiClientService) {
     this.beerTypes = (Object.keys(Type));
   }
@@ -28,6 +30,7 @@ export class EditBeerComponent implements OnInit {
         this.pushBeer(resp.body)
       }, (error => {
         console.log(error);
+        this.onError(error.error.message)
       }));
   }
 
@@ -37,8 +40,13 @@ export class EditBeerComponent implements OnInit {
     this.reset();
   }
 
+  private onError(message: string): void {
+    this.error = message;
+  }
+
   private reset(): void {
     this.beer = {} as Beer;
+    this.error = null;
   }
 
   ngOnInit() {

@@ -128,5 +128,5 @@
         "emailexists": "Email is already in use!",
         "idexists": "A new {{entityName}} cannot already have an ID"
     },
-    "footer": "Dit is uw voettekst"
+    "footer": "Mogelijk gemaakt door HelloBeer"
 }

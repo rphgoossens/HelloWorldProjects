@@ -1,0 +1,44 @@
+
+<div *ngIf="inventoryItem">
+    <h2><span jhiTranslate="helloBeerApp.inventoryItem.detail.title">Inventory Item</span> {{inventoryItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="helloBeerApp.inventoryItem.itemDescription">Item Description</span></dt>
+        <dd>
+            <span>{{inventoryItem.itemDescription}}</span>
+        </dd>
+        <dt><span jhiTranslate="helloBeerApp.inventoryItem.serving">Serving</span></dt>
+        <dd>
+            <span jhiTranslate="{{'helloBeerApp.ServingType.' + inventoryItem.serving}}">{{inventoryItem.serving}}</span>
+        </dd>
+        <dt><span jhiTranslate="helloBeerApp.inventoryItem.amount">Amount</span></dt>
+        <dd>
+            <span>{{inventoryItem.amount}}</span>
+        </dd>
+        <dt><span jhiTranslate="helloBeerApp.inventoryItem.rating">Rating</span></dt>
+        <dd>
+            <span>{{inventoryItem.rating}}</span>
+        </dd>
+        <dt><span jhiTranslate="helloBeerApp.inventoryItem.beer">Beer</span></dt>
+        <dd>
+            <div *ngIf="inventoryItem.beer">
+                <a [routerLink]="['/beer', inventoryItem.beer?.id]">{{inventoryItem.beer?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'inventory-item/'+ inventoryItem.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

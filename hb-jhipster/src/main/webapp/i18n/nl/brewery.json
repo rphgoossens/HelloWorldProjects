@@ -1,0 +1,23 @@
+
+{
+    "helloBeerApp": {
+        "brewery" : {
+            "home": {
+                "title": "Breweries",
+                "createLabel": "Maak een nieuwe Brewery",
+                "createOrEditLabel": "Maak of wijzig een Brewery"
+            },
+            "created": "A new Brewery is created with identifier {{ param }}",
+            "updated": "A Brewery is updated with identifier {{ param }}",
+            "deleted": "A Brewery is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Bent u zeker dat u Brewery {{ id }} wilt verwijderen?"
+            },
+            "detail": {
+                "title": "Brewery"
+            },
+            "name": "Name",
+            "countryName": "Country Name"
+        }
+    }
+}

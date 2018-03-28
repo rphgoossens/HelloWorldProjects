@@ -1,0 +1,14 @@
+{
+    "helloBeerApp": {
+        "BeerType" : {
+            "null": "",
+            "LAGER": "LAGER",
+            "PILSNER": "PILSNER",
+            "PALE_ALE": "PALE_ALE",
+            "INDIA_PALE_ALE": "INDIA_PALE_ALE",
+            "PORTER": "PORTER",
+            "STOUT": "STOUT",
+            "OTHER": "OTHER"
+        }
+    }
+}

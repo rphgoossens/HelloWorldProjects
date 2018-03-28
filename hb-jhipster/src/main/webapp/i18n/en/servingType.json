@@ -1,0 +1,9 @@
+{
+    "helloBeerApp": {
+        "ServingType" : {
+            "null": "",
+            "CAN": "CAN",
+            "BOTTLE": "BOTTLE"
+        }
+    }
+}

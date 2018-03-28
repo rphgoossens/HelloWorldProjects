@@ -1,0 +1,24 @@
+
+{
+    "helloBeerApp": {
+        "itemStockLevel" : {
+            "home": {
+                "title": "Item Stock Levels",
+                "createLabel": "Create a new Item Stock Level",
+                "createOrEditLabel": "Create or edit a Item Stock Level"
+            },
+            "created": "A new Item Stock Level is created with identifier {{ param }}",
+            "updated": "A Item Stock Level is updated with identifier {{ param }}",
+            "deleted": "A Item Stock Level is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Item Stock Level {{ id }}?"
+            },
+            "detail": {
+                "title": "Item Stock Level"
+            },
+            "stockDate": "Stock Date",
+            "quantity": "Quantity",
+            "inventoryItem": "Inventory Item"
+        }
+    }
+}

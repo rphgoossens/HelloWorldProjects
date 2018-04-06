@@ -46,7 +46,7 @@
             <label class="form-control-label" jhiTranslate="helloBeerApp.beer.brewery" for="field_brewery">Brewery</label>
             <select class="form-control" id="field_brewery" name="brewery" [(ngModel)]="beer.brewery" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="breweryOption.id === beer.brewery?.id ? beer.brewery : breweryOption" *ngFor="let breweryOption of breweries; trackBy: trackBreweryById">{{breweryOption.id}}</option>
+                <option [ngValue]="breweryOption.id === beer.brewery?.id ? beer.brewery : breweryOption" *ngFor="let breweryOption of breweries; trackBy: trackBreweryById">{{breweryOption.name}}</option>
             </select>
         </div>
     </div>

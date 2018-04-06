@@ -19,7 +19,7 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="name"><span jhiTranslate="helloBeerApp.beer.name">Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="type"><span jhiTranslate="helloBeerApp.beer.type">Type</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="brewery.id"><span jhiTranslate="helloBeerApp.beer.brewery">Brewery</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="brewery.name"><span jhiTranslate="helloBeerApp.beer.brewery">Brewery</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -30,7 +30,7 @@
                 <td jhiTranslate="{{'helloBeerApp.BeerType.' + beer.type}}">{{beer.type}}</td>
                 <td>
                     <div *ngIf="beer.brewery">
-                        <a [routerLink]="['../brewery', beer.brewery?.id ]" >{{beer.brewery?.id}}</a>
+                        <a [routerLink]="['../brewery', beer.brewery?.id ]" >{{beer.brewery?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

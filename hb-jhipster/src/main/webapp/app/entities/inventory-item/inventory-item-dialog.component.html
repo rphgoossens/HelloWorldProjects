@@ -53,10 +53,11 @@
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="helloBeerApp.inventoryItem.beer" for="field_beer">Beer</label>
-            <select class="form-control" id="field_beer" name="beer" [(ngModel)]="inventoryItem.beer" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="beerOption.id === inventoryItem.beer?.id ? inventoryItem.beer : beerOption" *ngFor="let beerOption of beers; trackBy: trackBeerById">{{beerOption.id}}</option>
-            </select>
+            <!--<select class="form-control" id="field_beer" name="beer" [(ngModel)]="inventoryItem.beer" >-->
+                <!--<option [ngValue]="null"></option>-->
+                <!--<option [ngValue]="beerOption.id === inventoryItem.beer?.id ? inventoryItem.beer : beerOption" *ngFor="let beerOption of beers; trackBy: trackBeerById">{{beerOption.name}}</option>-->
+            <!--</select>-->
+            <p-autoComplete  id="field_beer" name="beer" [(ngModel)]="inventoryItem.beer"  [suggestions]="beerOptions" (completeMethod)="search($event)" field="name" placeholder="Beer"></p-autoComplete>
         </div>
     </div>
     <div class="modal-footer">

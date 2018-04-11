@@ -21,7 +21,7 @@
             <th jhiSortBy="serving"><span jhiTranslate="helloBeerApp.inventoryItem.serving">Serving</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="amount"><span jhiTranslate="helloBeerApp.inventoryItem.amount">Amount</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="rating"><span jhiTranslate="helloBeerApp.inventoryItem.rating">Rating</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="beer.id"><span jhiTranslate="helloBeerApp.inventoryItem.beer">Beer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="beer.name"><span jhiTranslate="helloBeerApp.inventoryItem.beer">Beer</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -34,7 +34,7 @@
                 <td>{{inventoryItem.rating}}</td>
                 <td>
                     <div *ngIf="inventoryItem.beer">
-                        <a [routerLink]="['../beer', inventoryItem.beer?.id ]" >{{inventoryItem.beer?.id}}</a>
+                        <a [routerLink]="['../beer', inventoryItem.beer?.id ]" >{{inventoryItem.beer?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

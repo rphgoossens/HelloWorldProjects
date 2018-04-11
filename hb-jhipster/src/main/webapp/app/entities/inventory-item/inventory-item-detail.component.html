@@ -23,7 +23,7 @@
         <dt><span jhiTranslate="helloBeerApp.inventoryItem.beer">Beer</span></dt>
         <dd>
             <div *ngIf="inventoryItem.beer">
-                <a [routerLink]="['/beer', inventoryItem.beer?.id]">{{inventoryItem.beer?.id}}</a>
+                <a [routerLink]="['/beer', inventoryItem.beer?.id]">{{inventoryItem.beer?.name}}</a>
             </div>
         </dd>
     </dl>

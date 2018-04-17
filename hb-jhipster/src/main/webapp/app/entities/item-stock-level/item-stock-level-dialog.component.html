@@ -15,8 +15,10 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="helloBeerApp.itemStockLevel.stockDate" for="field_stockDate">Stock Date</label>
             <div class="d-flex">
-                <input id="field_stockDate" type="datetime-local" class="form-control" name="stockDate" [(ngModel)]="itemStockLevel.stockDate"
-                required/>
+                <!--<input id="field_stockDate" type="datetime-local" class="form-control" name="stockDate" [(ngModel)]="itemStockLevel.stockDate"-->
+                <!--required/>-->
+                <p-calendar id="field_stockDate" type="datetime-local" [showIcon]="true" name="stockDate" [(ngModel)]="itemStockLevel.stockDate" showTime="true" hourFormat="24" dateFormat="yy-mm-dd"></p-calendar>
+
             </div>
             <div [hidden]="!(editForm.controls.stockDate?.dirty && editForm.controls.stockDate?.invalid)">
                 <small class="form-text text-danger"
@@ -39,7 +41,7 @@
             <label class="form-control-label" jhiTranslate="helloBeerApp.itemStockLevel.inventoryItem" for="field_inventoryItem">Inventory Item</label>
             <select class="form-control" id="field_inventoryItem" name="inventoryItem" [(ngModel)]="itemStockLevel.inventoryItem" >
                 <option [ngValue]="null"></option>
-                <option [ngValue]="inventoryItemOption.id === itemStockLevel.inventoryItem?.id ? itemStockLevel.inventoryItem : inventoryItemOption" *ngFor="let inventoryItemOption of inventoryitems; trackBy: trackInventoryItemById">{{inventoryItemOption.id}}</option>
+                <option [ngValue]="inventoryItemOption.id === itemStockLevel.inventoryItem?.id ? itemStockLevel.inventoryItem : inventoryItemOption" *ngFor="let inventoryItemOption of inventoryitems; trackBy: trackInventoryItemById">{{inventoryItemOption.itemDescription}}</option>
             </select>
         </div>
     </div>

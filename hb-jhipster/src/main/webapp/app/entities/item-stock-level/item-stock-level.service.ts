@@ -74,7 +74,7 @@ export class ItemStockLevelService {
     private convert(itemStockLevel: ItemStockLevel): ItemStockLevel {
         const copy: ItemStockLevel = Object.assign({}, itemStockLevel);
 
-        copy.stockDate = this.dateUtils.toDate(itemStockLevel.stockDate);
+        // copy.stockDate = this.dateUtils.toDate(itemStockLevel.stockDate);
         return copy;
     }
 }

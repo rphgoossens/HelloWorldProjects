@@ -32,7 +32,7 @@ export class ItemStockLevelPopupService {
                     .subscribe((itemStockLevelResponse: HttpResponse<ItemStockLevel>) => {
                         const itemStockLevel: ItemStockLevel = itemStockLevelResponse.body;
                         itemStockLevel.stockDate = this.datePipe
-                            .transform(itemStockLevel.stockDate, 'yyyy-MM-ddTHH:mm:ss');
+                            .transform(itemStockLevel.stockDate, 'yyyy-MM-dd HH:mm');
                         this.ngbModalRef = this.itemStockLevelModalRef(component, itemStockLevel);
                         resolve(this.ngbModalRef);
                     });

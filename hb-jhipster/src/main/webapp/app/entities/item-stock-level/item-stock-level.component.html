@@ -30,7 +30,7 @@
                 <td>{{itemStockLevel.quantity}}</td>
                 <td>
                     <div *ngIf="itemStockLevel.inventoryItem">
-                        <a [routerLink]="['../inventory-item', itemStockLevel.inventoryItem?.id ]" >{{itemStockLevel.inventoryItem?.id}}</a>
+                        <a [routerLink]="['../inventory-item', itemStockLevel.inventoryItem?.id ]" >{{itemStockLevel.inventoryItem?.itemDescription}}</a>
                     </div>
                 </td>
                 <td class="text-right">

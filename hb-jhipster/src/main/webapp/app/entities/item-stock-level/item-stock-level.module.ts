@@ -1,18 +1,20 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {CalendarModule} from 'primeng/calendar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { HelloBeerSharedModule } from '../../shared';
+import {HelloBeerSharedModule} from '../../shared';
 import {
-    ItemStockLevelService,
-    ItemStockLevelPopupService,
     ItemStockLevelComponent,
+    ItemStockLevelDeleteDialogComponent,
+    ItemStockLevelDeletePopupComponent,
     ItemStockLevelDetailComponent,
     ItemStockLevelDialogComponent,
     ItemStockLevelPopupComponent,
-    ItemStockLevelDeletePopupComponent,
-    ItemStockLevelDeleteDialogComponent,
-    itemStockLevelRoute,
     itemStockLevelPopupRoute,
+    ItemStockLevelPopupService,
+    itemStockLevelRoute,
+    ItemStockLevelService,
 } from './';
 
 const ENTITY_STATES = [
@@ -22,6 +24,8 @@ const ENTITY_STATES = [
 
 @NgModule({
     imports: [
+        CalendarModule,
+        BrowserAnimationsModule,
         HelloBeerSharedModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
@@ -46,4 +50,5 @@ const ENTITY_STATES = [
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class HelloBeerItemStockLevelModule {}
+export class HelloBeerItemStockLevelModule {
+}

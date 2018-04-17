@@ -15,7 +15,7 @@
         <dt><span jhiTranslate="helloBeerApp.itemStockLevel.inventoryItem">Inventory Item</span></dt>
         <dd>
             <div *ngIf="itemStockLevel.inventoryItem">
-                <a [routerLink]="['/inventory-item', itemStockLevel.inventoryItem?.id]">{{itemStockLevel.inventoryItem?.id}}</a>
+                <a [routerLink]="['/inventory-item', itemStockLevel.inventoryItem?.id]">{{itemStockLevel.inventoryItem?.itemDescription}}</a>
             </div>
         </dd>
     </dl>

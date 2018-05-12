@@ -1,9 +1,11 @@
 package nl.whitehorses.hellobeer.repository;
 
+import nl.whitehorses.hellobeer.domain.InventoryItem;
 import nl.whitehorses.hellobeer.domain.ItemStockLevel;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.data.jpa.repository.*;
+import java.util.Optional;
 
 
 /**
@@ -13,4 +15,5 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface ItemStockLevelRepository extends JpaRepository<ItemStockLevel, Long> {
 
+    Optional<ItemStockLevel> findTopByInventoryItemOrderByStockDateDesc(InventoryItem inventoryItem);
 }

@@ -18,7 +18,6 @@
                 <!--<input id="field_stockDate" type="datetime-local" class="form-control" name="stockDate" [(ngModel)]="itemStockLevel.stockDate"-->
                 <!--required/>-->
                 <p-calendar id="field_stockDate" type="datetime-local" [showIcon]="true" name="stockDate" [(ngModel)]="itemStockLevel.stockDate" showTime="true" hourFormat="24" dateFormat="yy-mm-dd"></p-calendar>
-
             </div>
             <div [hidden]="!(editForm.controls.stockDate?.dirty && editForm.controls.stockDate?.invalid)">
                 <small class="form-text text-danger"

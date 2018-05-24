@@ -1,24 +1,25 @@
 package nl.whitehorses.hellobeer.web.rest;
 
 import nl.whitehorses.hellobeer.HelloBeerApp;
-import nl.whitehorses.hellobeer.service.OrderService;
 import nl.whitehorses.hellobeer.service.dto.OrderDTO;
 import nl.whitehorses.hellobeer.service.dto.OrderItemDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.cloud.stream.test.binder.MessageCollector;
+import org.springframework.messaging.Message;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.times;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,8 +32,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = HelloBeerApp.class)
 public class OrderResourceTest {
 
-    @MockBean
-    private OrderService orderService;
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    private Processor processor;
+
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    private MessageCollector messageCollector;
 
     private MockMvc restMockMvc;
 
@@ -40,7 +46,7 @@ public class OrderResourceTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        OrderResource orderResource = new OrderResource(orderService);
+        OrderResource orderResource = new OrderResource(processor);
         restMockMvc = MockMvcBuilders
             .standaloneSetup(orderResource)
             .build();
@@ -58,16 +64,16 @@ public class OrderResourceTest {
         order.setOrderId(1L);
         order.setOrderItems(Arrays.asList(orderItem1, orderItem2));
 
-        doNothing().when(orderService).registerOrder(order);
-
         restMockMvc.perform(
             post("/api/order/process-order")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(order)))
             .andExpect(status().isOk());
 
-        // Make sure Order(Item)DTO implement equals and hashcode or this check will fail!
-        Mockito.verify(orderService, times(1)).registerOrder(order);
+        Message<?> received = messageCollector.forChannel(processor.output()).poll();
+        assertNotNull(received);
+        assertEquals(received.getPayload(), order);
+
     }
 
 }

@@ -8,12 +8,15 @@ import nl.whitehorses.hellobeer.repository.InventoryItemRepository;
 import nl.whitehorses.hellobeer.repository.ItemStockLevelRepository;
 import nl.whitehorses.hellobeer.service.dto.OrderDTO;
 import nl.whitehorses.hellobeer.service.dto.OrderItemDTO;
-import nl.whitehorses.hellobeer.web.rest.errors.InvalidOrderException;
+import nl.whitehorses.hellobeer.service.errors.InvalidOrderException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.GenericMessage;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,6 +41,10 @@ public class OrderServiceIntTest {
 
     private static final Long DEFAULT_QUANTITY1 = 5L;
     private static final Long DEFAULT_QUANTITY2 = 10L;
+
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
+    @Autowired
+    Processor processor;
 
     @Autowired
     private ItemStockLevelRepository itemStockLevelRepository;
@@ -78,7 +85,7 @@ public class OrderServiceIntTest {
     // purchase order bound to fail on missing quantity inventory item 1
     @Test(expected = InvalidOrderException.class)
     @Transactional
-    public void assertOrderFails() {
+    public void assertOrderFails() throws InvalidOrderException {
         OrderDTO order = new OrderDTO();
         List<OrderItemDTO> orderItems = new ArrayList<>();
         orderItems.add(new OrderItemDTO(this.inventoryItem1.getId(), 20L));
@@ -94,7 +101,7 @@ public class OrderServiceIntTest {
     // purchase order OK, check inventory item 1 and 2 levels
     @Test
     @Transactional
-    public void assertOrderOK() {
+    public void assertOrderOK() throws InvalidOrderException {
         OrderDTO order = new OrderDTO();
         List<OrderItemDTO> orderItems = new ArrayList<>();
         orderItems.add(new OrderItemDTO(this.inventoryItem1.getId(), 8L));
@@ -104,7 +111,9 @@ public class OrderServiceIntTest {
         order.setOrderId(1L);
         order.setOrderItems(orderItems);
 
-        orderService.registerOrder(order);
+        //orderService.registerOrder(order);
+        Message<OrderDTO> message = new GenericMessage<OrderDTO>(order);
+        processor.input().send(message);
 
         // assert item stock level 1, should be 10-8=2
         Optional<ItemStockLevel> itemStockLevel1 = itemStockLevelRepository.findTopByInventoryItemOrderByStockDateDesc(inventoryItem1);

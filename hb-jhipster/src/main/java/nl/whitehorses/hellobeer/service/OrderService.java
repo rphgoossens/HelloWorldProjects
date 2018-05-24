@@ -6,9 +6,11 @@ import nl.whitehorses.hellobeer.repository.InventoryItemRepository;
 import nl.whitehorses.hellobeer.repository.ItemStockLevelRepository;
 import nl.whitehorses.hellobeer.service.dto.OrderDTO;
 import nl.whitehorses.hellobeer.service.dto.OrderItemDTO;
-import nl.whitehorses.hellobeer.web.rest.errors.InvalidOrderException;
+import nl.whitehorses.hellobeer.service.errors.InvalidOrderException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +36,7 @@ public class OrderService {
         this.inventoryItemRepository = inventoryItemRepository;
     }
 
+    @StreamListener(Processor.INPUT)
     public void registerOrder(OrderDTO order) throws InvalidOrderException {
         // Map to store new item stock levels
         List<ItemStockLevel> itemStockLevelList = new ArrayList<>();
@@ -50,24 +53,24 @@ public class OrderService {
     // validate order items before processing
     // - assuming there are no multiple entries for one inventory item in the order
     // - if one order item entry fails, the whole order fails.
-    private ItemStockLevel processOrderItem(Long inventoryItemId, Long qtyOrdered) {
+    private ItemStockLevel processOrderItem(Long inventoryItemId, Long qtyOrdered) throws InvalidOrderException {
 
         final InventoryItem inventoryItem = inventoryItemRepository.findOne(inventoryItemId);
         if (inventoryItem == null) {
-            throw new InvalidOrderException("Invalid order", ENTITY_NAME, "invalidorder");
+            throw new InvalidOrderException("Invalid order");
         }
 
         // find item stock level
         final Optional<ItemStockLevel> itemStockLevel = itemStockLevelRepository.findTopByInventoryItemOrderByStockDateDesc(inventoryItem);
         if (!itemStockLevel.isPresent()) {
-            throw new InvalidOrderException("Invalid order", ENTITY_NAME, "invalidorder");
+            throw new InvalidOrderException("Invalid order");
         }
 
         // check if quantity available
         Long qtyCurrent = itemStockLevel.get().getQuantity();
         Long newqty = qtyCurrent - qtyOrdered;
         if (newqty < 0L) {
-            throw new InvalidOrderException("Invalid order", ENTITY_NAME, "invalidorder");
+            throw new InvalidOrderException("Invalid order");
         }
 
         // construct new item stock level

@@ -66,6 +66,10 @@ spring:
                     destination: topic-jhipster
                 output:
                     destination: topic-jhipster
+                orderConsumer:
+                    destination: topic-order
+                orderProducer:
+                    destination: topic-order
 
                 rabbit:
                     bindings:

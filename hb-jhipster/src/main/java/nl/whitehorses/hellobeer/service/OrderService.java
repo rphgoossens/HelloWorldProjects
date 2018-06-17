@@ -2,6 +2,8 @@ package nl.whitehorses.hellobeer.service;
 
 import nl.whitehorses.hellobeer.domain.InventoryItem;
 import nl.whitehorses.hellobeer.domain.ItemStockLevel;
+import nl.whitehorses.hellobeer.messaging.OrderConsumerChannel;
+import nl.whitehorses.hellobeer.messaging.OrderProducerChannel;
 import nl.whitehorses.hellobeer.repository.InventoryItemRepository;
 import nl.whitehorses.hellobeer.repository.ItemStockLevelRepository;
 import nl.whitehorses.hellobeer.service.dto.OrderDTO;
@@ -9,6 +11,8 @@ import nl.whitehorses.hellobeer.service.dto.OrderItemDTO;
 import nl.whitehorses.hellobeer.web.rest.errors.InvalidOrderException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +24,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@EnableBinding(OrderConsumerChannel.class)
 public class OrderService {
 
     private final ItemStockLevelRepository itemStockLevelRepository;
@@ -34,6 +39,7 @@ public class OrderService {
         this.inventoryItemRepository = inventoryItemRepository;
     }
 
+    @StreamListener(OrderConsumerChannel.CHANNEL)
     public void registerOrder(OrderDTO order) throws InvalidOrderException {
         // Map to store new item stock levels
         List<ItemStockLevel> itemStockLevelList = new ArrayList<>();

@@ -53,6 +53,24 @@ spring:
         password:
     thymeleaf:
         cache: true
+    cloud:
+        stream:
+            default:
+                contentType: application/json
+            bindings:
+                input:
+                    destination: topic-jhipster
+                output:
+                    destination: topic-jhipster
+                
+                rabbit:
+                    bindings:
+                        output:
+                            producer:
+                                routingKeyExpression: payload.title
+                
+            
+    
 
 liquibase:
     contexts: prod

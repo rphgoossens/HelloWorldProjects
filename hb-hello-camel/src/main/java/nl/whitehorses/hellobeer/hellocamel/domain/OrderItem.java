@@ -19,7 +19,7 @@ public class OrderItem {
     @ApiModelProperty(readOnly = true)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     @JsonBackReference
     private Order order;

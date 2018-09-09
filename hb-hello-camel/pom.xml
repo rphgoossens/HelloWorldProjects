@@ -51,6 +51,21 @@
             <artifactId>camel-ftp-starter</artifactId>
             <version>${camel.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jacksonxml-starter</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jackson-starter</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-http-starter</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>

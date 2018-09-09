@@ -3,6 +3,7 @@ package nl.whitehorses.hellobeer.hellocamel.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Order {
     private Long id;
 
     @NotNull
+    @JacksonXmlProperty(localName="CustomerId")
     private Long customerId;
 
     @OneToMany(
@@ -27,6 +29,7 @@ public class Order {
             cascade = CascadeType.ALL,
             orphanRemoval = true)
     @JsonManagedReference
+    @JacksonXmlProperty(localName="OrderItems")
     private List<OrderItem> orderItems;
 
     public void addOrderItem(OrderItem orderItem) {

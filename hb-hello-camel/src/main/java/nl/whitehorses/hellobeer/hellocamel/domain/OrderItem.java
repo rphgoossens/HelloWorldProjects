@@ -3,6 +3,7 @@ package nl.whitehorses.hellobeer.hellocamel.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
@@ -25,8 +26,11 @@ public class OrderItem {
     private Order order;
 
     @NotNull
+    @JacksonXmlProperty(localName = "InventoryItemId")
     private Long inventoryItemId;
+
     @NotNull
+    @JacksonXmlProperty(localName = "Quantity")
     private Long quantity;
 
     public Long getId() {

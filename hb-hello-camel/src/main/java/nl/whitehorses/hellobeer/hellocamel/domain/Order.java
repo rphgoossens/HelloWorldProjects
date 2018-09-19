@@ -14,6 +14,8 @@ import java.util.List;
 @Table(name = "hb_order")
 public class Order {
 
+    public Order(){}
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(readOnly = true)

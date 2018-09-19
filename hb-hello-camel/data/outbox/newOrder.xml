@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Order>
+    <CustomerId>1</CustomerId>
+    <OrderItems>
+        <OrderItem>
+            <InventoryItemId>1</InventoryItemId>
+            <Quantity>100</Quantity>
+        </OrderItem>
+        <OrderItem>
+            <InventoryItemId>2</InventoryItemId>
+            <Quantity>50</Quantity>
+        </OrderItem>
+    </OrderItems>
+</Order>

@@ -17,12 +17,19 @@ public class FtpOrderToOrderController extends RouteBuilder {
         jacksonDataFormat.setInclude("NON_NULL");
         jacksonDataFormat.setPrettyPrint(true);
 
+        // TODO: enpoint properties
+
         from("ftp://localhost/hello-beer?username=anonymous&move=.done&moveFailed=.error")
+                .routeId("ftp-to-order")
                 .log("${body}")
                 .unmarshal().jacksonxml(Order.class)
+                .to("direct:new-order").id("new-order");
+
+        from("direct:new-order")
+                .routeId("order-to-order-controller")
                 .marshal(jacksonDataFormat)
                 .log("${body}")
                 .setHeader(Exchange.HTTP_METHOD, constant("POST"))
-                .to("http://localhost:8080/hello-camel/1.0/order");
+                .to("http://localhost:8080/hello-camel/1.0/order").id("new-order-controller");
     }
 }

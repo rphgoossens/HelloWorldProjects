@@ -19,7 +19,7 @@ public class FtpOrderToOrderController extends RouteBuilder {
 
         // TODO: enpoint properties
 
-        from("ftp://localhost/hello-beer?username=anonymous&move=.done&moveFailed=.error")
+        from("{{endpoint.order.ftp}}")
                 .routeId("ftp-to-order")
                 .log("${body}")
                 .unmarshal().jacksonxml(Order.class)
@@ -30,6 +30,6 @@ public class FtpOrderToOrderController extends RouteBuilder {
                 .marshal(jacksonDataFormat)
                 .log("${body}")
                 .setHeader(Exchange.HTTP_METHOD, constant("POST"))
-                .to("http://localhost:8080/hello-camel/1.0/order").id("new-order-controller");
+                .to("{{endpoint.order.http}}").id("new-order-controller");
     }
 }

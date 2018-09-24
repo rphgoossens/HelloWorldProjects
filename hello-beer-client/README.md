@@ -1,2 +1,2 @@
 # HelloBeerServer
-Project demonstrating Swagger Server Stub generation
+Project demonstrating Swagger Client Stub generation

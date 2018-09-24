@@ -2,6 +2,17 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
 
+## Description
+
+Angular client connects with hello-beer-server Spring Boot Rest service
+
+## Blog post
+
+Used in the following blog posts
+* https://rphgoossens.wordpress.com/2018/03/03/hellobeer-goes-angular-part-i/
+* https://rphgoossens.wordpress.com/2018/03/04/hellobeer-goes-angular-part-ii/
+* https://rphgoossens.wordpress.com/2018/03/05/hellobeer-goes-angular-finale/
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

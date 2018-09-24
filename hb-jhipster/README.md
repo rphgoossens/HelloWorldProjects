@@ -1,6 +1,22 @@
 # HelloBeer
 This application was generated using JHipster 4.14.1, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.1](http://www.jhipster.tech/documentation-archive/v4.14.1).
 
+## Description
+Project is used to demonstrate the following jhipster features
+* Basic generation (Spring Boot Angular Monolith)
+* Basic tweaking
+* Adding and exposing a complex service
+* Adding Kafka streaming
+* Adding RabbitMQ streaming
+
+## Blog posts
+This project is used in the following blog posts
+* https://rphgoossens.wordpress.com/2018/03/28/getting-the-jhipsters-aboard/
+* https://rphgoossens.wordpress.com/2018/04/18/tweaking-the-jhipster-app-show-me-you-ids-please-ow-wait-dont/
+* https://rphgoossens.wordpress.com/2018/05/13/jhipster-adding-some-service/
+* https://rphgoossens.wordpress.com/2018/05/25/jhipster-streaming-beer-with-kafka-and-spring-cloud-stream/
+* https://rphgoossens.wordpress.com/2018/06/18/jhipster-making-things-a-little-less-hip/
+
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:

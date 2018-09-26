@@ -17,8 +17,6 @@ public class FtpOrderToOrderController extends RouteBuilder {
         jacksonDataFormat.setInclude("NON_NULL");
         jacksonDataFormat.setPrettyPrint(true);
 
-        // TODO: enpoint properties
-
         from("{{endpoint.order.ftp}}")
                 .routeId("ftp-to-order")
                 .log("${body}")

@@ -62,7 +62,6 @@ public class FtpOrderToOrderControllerTest {
 
             adviced = true;
         }
-        camelContext.start();
     }
 
     @Test
@@ -83,7 +82,7 @@ public class FtpOrderToOrderControllerTest {
     }
 
     @Test
-    public void OrderToController() {
+    public void orderToController() {
         OrderItem orderItem1 = new OrderItemBuilder().setInventoryItemId(1L).setQuantity(100L).build();
         OrderItem orderItem2 = new OrderItemBuilder().setInventoryItemId(2L).setQuantity(50L).build();
         Order order = new OrderBuilder().setCustomerId(1L).addOrderItems(orderItem1, orderItem2).build();
@@ -99,11 +98,6 @@ public class FtpOrderToOrderControllerTest {
         assertThat(jsonOrder, hasJsonPath("$.orderItems[1].inventoryItemId", is(2)));
         assertThat(jsonOrder, hasJsonPath("$.orderItems[1].quantity", is(50)));
         assertThat(jsonOrder, hasNoJsonPath("$.orderItems[1].id"));
-    }
-
-    @After
-    public void tearDown() throws Exception {
-        camelContext.stop();
     }
 
 }

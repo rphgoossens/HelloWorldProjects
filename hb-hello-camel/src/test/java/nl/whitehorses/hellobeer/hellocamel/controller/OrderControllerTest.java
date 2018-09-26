@@ -30,7 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(OrderController.class)
-@AutoConfigureMockMvc
 public class OrderControllerTest {
 
     @Autowired
@@ -69,11 +68,11 @@ public class OrderControllerTest {
                 .andExpect(jsonPath("$.orderItems[1].inventoryItemId", is(2)))
                 .andExpect(jsonPath("$.orderItems[1].quantity", is(50)));
 
-        ArgumentCaptor<Order> dtoCaptor = ArgumentCaptor.forClass(Order.class);
-        verify(orderRepositoryMock, times(1)).save(dtoCaptor.capture());
+        ArgumentCaptor<Order> orderCaptor = ArgumentCaptor.forClass(Order.class);
+        verify(orderRepositoryMock, times(1)).save(orderCaptor.capture());
         verifyNoMoreInteractions(orderRepositoryMock);
 
-        Order orderArgument = dtoCaptor.getValue();
+        Order orderArgument = orderCaptor.getValue();
         assertNull(orderArgument.getId());
         assertThat(orderArgument.getCustomerId(), is(1L));
         assertEquals(orderArgument.getOrderItems().size(), 2);
